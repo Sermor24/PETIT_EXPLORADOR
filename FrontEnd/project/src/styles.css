@@ -458,10 +458,11 @@
   }
   
   .display-4 {
-    font-size: 3.5rem;
+    font-size: 3.0rem;
     font-weight: 300;
     line-height: 1.2;
   }
+
   
   @media (max-width: 1200px) {
     .display-4 {
@@ -9808,12 +9809,12 @@
   }
   
   .jumbotron {
-    background: linear-gradient(90deg, rgba(115,255,115,1) 0%, rgba(110,255,89,0.5887605042016807) 50%, rgba(115,255,115,1) 100%), url(../src/assets/img/header.jpg), no-repeat center center;
+    background: linear-gradient(90deg, rgba(115,255,115,1) 0%, rgba(110,255,89,0.5887605042016807) 50%, rgba(115,255,115,1) 100%), no-repeat center center;
     background-size: 90%;
   }
   
   .jumbotron.page-header {
-    background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), url(../src/assets/img/header.jpg), no-repeat center center;
+    background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), no-repeat center center;
     background-size: 90%;
   }
   
@@ -9972,6 +9973,24 @@
   }
 
   #div_about {
-    background-color: #138496;
+    background-color: rgb(253, 227, 229);
+    text-align: center;
+    color: #0e284e;
+  }
+
+  #div_about .display-4 {
+    color: #0e284e;
+    font-size: 2.9rem;
+    margin-top: 25px;
+  }
+
+  #div_about p {
+    font-size: 1.3rem;
+    margin-top: 15px;
+  }
+
+  #div_about .btn {
+    background-color: #0e284e;
+    border-color: #0e284e;
   }
   
