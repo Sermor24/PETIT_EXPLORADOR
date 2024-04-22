@@ -9808,13 +9808,13 @@
   }
   
   .jumbotron {
-    background: linear-gradient(90deg, rgba(115,255,115,1) 0%, rgba(110,255,89,0.5887605042016807) 50%, rgba(115,255,115,1) 100%), url(https://cafeplatino.com/wp-content/uploads/2023/05/imagen-de-prueba-320x240-1.jpeg), no-repeat center center;
-    background-size: cover;
+    background: linear-gradient(90deg, rgba(115,255,115,1) 0%, rgba(110,255,89,0.5887605042016807) 50%, rgba(115,255,115,1) 100%), url(../src/assets/img/header.jpg), no-repeat center center;
+    background-size: 90%;
   }
   
   .jumbotron.page-header {
-    background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), url(https://cafeplatino.com/wp-content/uploads/2023/05/imagen-de-prueba-320x240-1.jpeg), no-repeat center center;
-    background-size: cover;
+    background: linear-gradient(rgba(40, 120, 235, 0.9), rgba(40, 120, 235, 0.9)), url(../src/assets/img/header.jpg), no-repeat center center;
+    background-size: 90%;
   }
   
   .overlay-top::before,
@@ -9853,28 +9853,29 @@
     position: relative;
     margin-top: 40px;
     transition: .5s;
+    width: 110%;
+    height: 450px;
   }
   
   .courses-list-item img {
     position: relative;
-    transition: .5s;
   }
   
   .courses-item .courses-text,
   .courses-list-item .courses-text {
     position: absolute;
     width: 100%;
-    height: calc(100% + 86px);
+    height: 100%; 
     top: 0;
     left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    background: linear-gradient(to bottom, rgba(18, 15, 45, 0), #120f2d);
-    transition: .5s;
+    background: linear-gradient(to bottom, rgba(18, 15, 45, 0), #120f2d); 
+    /* transition: .5s; */ /* Comentado para eliminar la transición */
     z-index: 1;
-  }
+}
   
   .courses-list-item .courses-text {
     height: 100%;
@@ -9970,5 +9971,7 @@
     height: 450px;
   }
 
-  
+  #div_about {
+    background-color: #138496;
+  }
   
