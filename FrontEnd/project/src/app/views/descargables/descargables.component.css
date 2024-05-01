@@ -1,0 +1,100 @@
+#div_descargable {
+  background-color: rgb(253, 227, 229);
+  text-align: center;
+  color: #0e284e;
+}
+
+#div_descargable .display-4 {
+  color: #0e284e;
+  font-size: 2.9rem;
+  margin-top: 105px;
+}
+
+#div_descargable h3 {
+  margin-top: 25px;
+}
+
+#div_descargable p {
+  font-size: 1.3rem;
+  margin-top: 15px;
+}
+
+#div_descargable .btn {
+  background-color: #0e284e;
+  border-color: #0e284e;
+}
+
+.container_descargable {
+  max-width: 600px;
+  margin: 50px auto; /* Centrar en la pantalla */
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Añadir sombra */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.categories {
+  list-style: none;
+  padding: 0;
+}
+
+.category {
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.category:hover {
+  color: #007bff;
+}
+
+.category-description {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.files {
+  list-style: none;
+  padding-left: 0;
+  text-align: center; /* Centrar elementos <li> */
+  
+}
+
+li {
+  margin-bottom: 50px;
+}
+
+.files li {
+  margin-bottom: 10px;
+}
+
+ul li {
+  text-align: center;
+  
+}
+
+.files a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.files a:hover {
+  color: #007bff;
+}
+
+.image {
+  position: absolute;
+  flex-shrink: 0;
+  margin-left: 600px;
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
+}

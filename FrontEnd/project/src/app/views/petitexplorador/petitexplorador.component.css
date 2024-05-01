@@ -1,0 +1,25 @@
+#div_descargable {
+    background-color: rgb(253, 227, 229);
+    text-align: center;
+    color: #0e284e;
+  }
+
+  #div_descargable .display-4 {
+    color: #0e284e;
+    font-size: 2.9rem;
+    margin-top: 105px;
+  }
+
+  #div_descargable h3 {
+    margin-top: 25px;
+  }
+
+  #div_descargable p {
+    font-size: 1.3rem;
+    margin-top: 15px;
+  }
+
+  #div_descargable .btn {
+    background-color: #0e284e;
+    border-color: #0e284e;
+  }
