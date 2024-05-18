@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Recursos pedagógicos</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<style>
+    .file-upload-container h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .file-upload-container #fileInput {
+
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.8);
+        width: 100%;
+        box-sizing: border-box;
+        max-width: 400px;
+
+    }
+
+    .file-upload-container button {
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .file-upload-container button:hover {
+        background-color: #0056b3;
+    }
+
+    .file-upload-container .file-item {
+        background-color: rgba(230, 228, 228, 0.8);
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .file-upload-container .file-link {
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+        margin-right: 10px;
+        flex-grow: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .file-upload-container .delete-btn {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .file-upload-container .delete-btn:hover {
+        background-color: #c82333;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 360px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+
+    .file-upload-container img {
+        max-width: 100%;
+        max-height: 200px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+
+    .file-upload-container #fileList {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .file-upload-container #imagePreview {
+        max-width: 100%;
+        max-height: 200px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+
+    /* Estilos para el contenedor */
+    .file-upload-container {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+
+        background-size: cover;
+        background-position: center;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        /* Borde sombreado */
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        /* Sombra */
+    }
+
+    #div_descargable {
+        background-color: rgb(253, 227, 229);
+        text-align: center;
+        color: #0e284e;
+        margin-left: -15px;
+    }
+
+    #div_descargable .display-4 {
+        color: #0e284e;
+        font-size: 2.9rem;
+        margin-top: 65px;
+    }
+
+    #div_descargable h3 {
+        margin-top: 25px;
+    }
+
+    #div_descargable p {
+        font-size: 1.3rem;
+        margin-top: 15px;
+    }
+
+    #div_descargable .btn {
+        background-color: #0e284e;
+        border-color: #0e284e;
+    }
+
+    #container_descargable {
+        margin-bottom: -300px;
+    }
+
+    .container_descargable {
+        max-width: 800px;
+        margin-bottom: -50px;
+        margin: 20px auto;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        /* Añadir sombra */
+        position: relative;
+    }
+</style>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark">
+        <div class="row py-2 px-lg-5">
+            <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center text-white">
+                    <small><i class="fa fa-phone-alt mr-2"></i>+34 653425617</small>
+                    <small class="px-3">|</small>
+                    <small><i class="fa fa-envelope mr-2"></i>"Email"</small>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-white px-2" href="https://facebook.com">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-white px-2" href="https://twitter.com">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-white px-2" href="https://linkedin.com">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-white px-2" href="https://instagram.com">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand ml-lg-3">
+                <h2 class="m-0 text-uppercase" style="font-size: 20px;
+                color: rgb(9, 36, 108)">Recursos pedagógicos</h2>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav mx-auto py-0">
+                    <a href="index.html" routerLinkActive="active" class="nav-item nav-link active">Inicio</a>
+                    <a href="about.html" class="nav-item nav-link">Quiénes somos</a>
+                    <a href="enlaces.html" class="nav-item nav-link">Enlaces</a>
+                    <a href="app.html" class="nav-item nav-link">Nuestra Aplicación</a>
+                    <a href="Descargables.html" class="nav-item nav-link">Descargables</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Descagables Start -->
+    <div class="container-fluid py-5" id="container_descargable">
+        <div class="container py-5">
+            <div class="row d-flex ">
+                <div class="col-lg-6 mb-5 mb-lg-0" style="min-height: 600px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100" src="img/descargables.webp"
+                            style="object-fit: cover; height: 80%;" alt="Descargables Image">
+                    </div>
+                </div>
+                <div class="col-lg-6" id="div_descargable" style="max-height: 360px; ">
+                    <div class="section-title position-relative mb-7">
+                        <h3 class="display-4">Descargables</h3>
+                    </div>
+                    <p>Somos educadoras que han hecho una web para recolectar recursos lingüísticos para ayudar a niños
+                        extranjeros a aprender un nuevo idioma. En este apartado encontraras diferentes recursos para
+                        descargar y utilizar con tus niños y niñas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="file-upload-container">
+        <h1>Descargables</h1>
+        <br>
+        <input type="file" id="fileInput" accept="*" onchange="previewImage()"><br>
+        <div id="imagePreview"></div>
+        <button onclick="uploadFile()">Subir Archivo</button>
+        <div id="fileList"></div>
+    </div>
+
+
+    <script>
+        window.onload = function () {
+            const files = JSON.parse(localStorage.getItem('files')) || [];
+            const fileList = document.getElementById('fileList');
+
+            files.forEach(function (file) {
+                addFileToList(file.name, file.url);
+            });
+        };
+
+        function previewImage() {
+            const fileInput = document.getElementById('fileInput');
+            const imagePreview = document.getElementById('imagePreview');
+            const file = fileInput.files[0];
+
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                imagePreview.innerHTML = '';
+                imagePreview.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const fileList = document.getElementById('fileList');
+            const file = fileInput.files[0];
+
+            const fileURL = URL.createObjectURL(file);
+
+            const files = JSON.parse(localStorage.getItem('files')) || [];
+            files.push({ name: file.name, url: fileURL });
+            localStorage.setItem('files', JSON.stringify(files));
+
+            addFileToList(file.name, fileURL);
+            document.getElementById('imagePreview').innerHTML = '';
+            fileInput.value = ''; // Clear file input
+        }
+
+        function addFileToList(fileName, fileURL) {
+            const fileList = document.getElementById('fileList');
+            const fileItem = document.createElement('div');
+            fileItem.classList.add('file-item');
+
+            const link = document.createElement('a');
+            link.href = fileURL;
+            link.textContent = fileName;
+            link.setAttribute('download', fileName);
+            link.classList.add('file-link');
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Eliminar';
+            deleteBtn.classList.add('delete-btn');
+            deleteBtn.onclick = function () {
+                removeFile(fileName);
+                fileList.removeChild(fileItem);
+            };
+
+            fileItem.appendChild(link);
+            fileItem.appendChild(deleteBtn);
+
+            fileList.appendChild(fileItem);
+        }
+
+        function removeFile(fileName) {
+            let files = JSON.parse(localStorage.getItem('files')) || [];
+            files = files.filter(function (file) {
+                return file.name !== fileName;
+            });
+            localStorage.setItem('files', JSON.stringify(files));
+        }
+    </script>
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <div class="bg-light d-flex flex-column justify-content-center px-5" style="height: 450px;">
+                        <div class="d-flex align-items-center mb-5">
+                            <div class="btn-icon bg-primary mr-4">
+                                <i class="fa fa-2x fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div class="mt-n1">
+                                <h4>Ubicación</h4>
+                                <p class="m-0">Florida Universitaria</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-5">
+                            <div class="btn-icon bg-secondary mr-4">
+                                <i class="fa fa-2x fa-phone-alt text-white"></i>
+                            </div>
+                            <div class="mt-n1">
+                                <h4>Llámanos</h4>
+                                <p class="m-0">987 654 321</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="btn-icon bg-warning mr-4">
+                                <i class="fa fa-2x fa-envelope text-white"></i>
+                            </div>
+                            <div class="mt-n1">
+                                <h4>Email</h4>
+                                <p class="m-0">infoexample.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="section-title position-relative mb-4">
+                        <h6 class="d-inline-block position-relative text-secondary text-uppercase pb-2">¿Necesitas
+                            ayuda?</h6>
+                        <h1 class="display-4">Contacta con nosotras</h1>
+                    </div>
+                    <div class="contact-form">
+                        <form>
+                            <div class="row">
+                                <div class="col-6 form-group">
+                                    <input type="text"
+                                        class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                        placeholder="Your Name" required="required">
+                                </div>
+                                <div class="col-6 form-group">
+                                    <input type="email"
+                                        class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                        placeholder="Your Email" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control border-top-0 border-right-0 border-left-0 p-0"
+                                    placeholder="Subject" required="required">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control border-top-0 border-right-0 border-left-0 p-0" rows="5"
+                                    placeholder="Message" required="required"></textarea>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary py-3 px-5" type="submit">Mandar Mensaje</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid position-relative overlay-top text-white-50 py-5"
+        style="margin-top: 90px; background-image: radial-gradient(circle, #b0ffd7, #b0fdd8, #b1fad9, #b1f8da, #b2f5da, #b2f5da, #b2f5da, #b2f5da, #b1f8da, #b1fad9, #b0fdd8, #b0ffd7);">
+        <div class="container mt-5 pt-5">
+            <div class="row">
+                <div class="col-md-6 mb-5" style="color:black">
+                    <h3 class="text-white mb-4">Get In Touch</h3>
+                    <p><i class="fa fa-map-marker-alt mr-2"></i>Carrer del Rei En Jaume I, 2, 46470 Catarroja, Valencia
+                    </p>
+                    <p><i class="fa fa-phone-alt mr-2"></i>+34 653425617</p>
+                    <p><i class="fa fa-envelope mr-2"></i>Correo Electrónico</p>
+                    <div class="d-flex justify-content-start mt-4">
+                        <a class="text-white mr-4" href="https://twitter.com"><i class="fab fa-2x fa-twitter"></i></a>
+                        <a class="text-white mr-4" href="https://facebook.com"><i
+                                class="fab fa-2x fa-facebook-f"></i></a>
+                        <a class="text-white mr-4" href="https://linkedin.com"><i
+                                class="fab fa-2x fa-linkedin-in"></i></a>
+                        <a class="text-white" href="https://www.instagram.com"><i
+                                class="fab fa-2x fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark border-top py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0">Copyright &copy; <a class="text-white" href="#">PETIT EXPLORADOR</a>. All Rights
+                    Reserved.
+                </p>
+            </div>
+            <div class="col-md-6 text-center text-md-right">
+                <p class="m-0">Designed by Sergio Albero and Alejandro Santarén
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i
+            class="fa fa-angle-double-up"></i></a>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

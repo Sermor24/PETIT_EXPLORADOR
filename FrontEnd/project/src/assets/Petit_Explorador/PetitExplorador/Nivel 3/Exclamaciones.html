@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gramática - Nivel 3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #7ff8b6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 1100px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .question p {
+            margin: 0;
+            flex: 1;
+            text-align: left;
+            font-size: 30px; /* Tamaño de fuente aumentado */
+        }
+
+        .feedback {
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .selection-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 20px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .selection-button:hover {
+            background-color: #e5e5e5;
+        }
+
+        .exclamation-button {
+            background-color: #ffcccc;
+            color: #ff4d4d;
+        }
+
+        .question-button {
+            background-color: #cce6ff;
+            color: #007bff;
+        }
+
+        .selected {
+            background-color: #b3b3b3;
+        }
+
+        #check-button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: #ffcc99;
+            color: #ff6600;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #check-button:hover {
+            background-color: #ffb366;
+            color: #ff3300;
+        }
+
+        .correct {
+            color: #008000;
+        }
+
+        .incorrect {
+            color: #ff0000;
+        }
+
+        .icon {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .fa-check-circle {
+            color: #008000;
+        }
+
+        .fa-times-circle {
+            color: #ff0000;
+        }
+
+        .hidden-char {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¡Exclamacions! o ¿Interrogacions?</h1>
+        <div id="questions-container">
+            <!-- Aquí se generarán las preguntas -->
+        </div>
+        <button id="check-button">Comprovar respostes</button>
+        <div id="feedback-message" class="feedback hidden"></div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="../Index.html" class="btn btn-primary btn-lg" style=" background-color: #ee2f62; border: #ee2f62;">Tornar a Inici</a>
+            <a href="preposiciones.html" class="btn btn-primary btn-lg" style=" background-color: #2fee92; border: #2fee92;">Següent activitat</a>
+        </div>
+    </div>
+    <script>
+        const questions = [
+            "Quin espectacle tan meravellós ens ha oferit els ballarins!",
+            "Com has pogut fer això?",
+            "Quina sorpresa agradable!",
+            "Què estàs fent aquí?",
+            "Quina vista tan impressionant!",
+            "On has anat aquest cap de setmana?",
+            "Quin gos tan simpàtic tens!",
+            "Per què no vens amb nosaltres?",
+            "Què bonic és aquest jardí!",
+            "No puc creure que hagi passat açò!"
+        ];
+
+        const container = document.getElementById("questions-container");
+
+        questions.forEach((question, index) => {
+            const charIndex = question.indexOf("?") !== -1 ? question.indexOf("?") : question.indexOf("!");
+            const hiddenPart = charIndex !== -1 ? question.substring(0, charIndex) : question;
+            const visiblePart = charIndex !== -1 ? question.substring(charIndex) : "";
+            const div = document.createElement("div");
+            div.classList.add("question");
+            div.innerHTML = `
+                <p>${hiddenPart}<span class="hidden-char">${visiblePart}</span></p>
+                <div class="icon"></div>
+                <div>
+                    <button class="selection-button exclamation-button" data-answer="exclamation">!</button>
+                    <button class="selection-button question-button" data-answer="question">?</button>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+
+        const checkButton = document.getElementById("check-button");
+        checkButton.addEventListener("click", () => {
+            
+
+            questions.forEach((question, index) => {
+                const selectedButton = document.querySelector(`#questions-container .question:nth-child(${index + 1}) .selection-button.selected`);
+                const selectedAnswer = selectedButton ? selectedButton.dataset.answer : "";
+
+                const iconDiv = document.querySelector(`#questions-container .question:nth-child(${index + 1}) .icon`);
+                if ((selectedAnswer === "exclamation" && question.endsWith("!")) ||
+                    (selectedAnswer === "question" && question.endsWith("?"))) {
+                    iconDiv.innerHTML = '<i class="fas fa-check-circle"></i>';
+                } else {
+                    iconDiv.innerHTML = '<i class="fas fa-times-circle"></i>';
+                }
+            });
+        });
+
+        // Event listener para seleccionar/deseleccionar botones
+        document.addEventListener("click", (event) => {
+            const target = event.target;
+            if (target.classList.contains("selection-button")) {
+                const siblings = target.parentNode.querySelectorAll(".selection-button");
+                siblings.forEach((button) => {
+                    button.classList.remove("selected");
+                });
+                target.classList.add("selected");
+            }
+        });
+    </script>
+</body>
+</html>

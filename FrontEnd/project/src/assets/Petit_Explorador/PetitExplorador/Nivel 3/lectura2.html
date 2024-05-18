@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprensión lectora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            color: #6B6A75;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: false;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #2878EB;
+            border-color: #2878EB;
+        }
+
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #1465d9;
+            border-color: #135fcd;
+        }
+
+        .btn-primary:focus,
+        .btn-primary.focus {
+            color: #fff;
+            background-color: #1465d9;
+            border-color: #135fcd;
+            box-shadow: 0 0 0 0.2rem rgba(72, 140, 238, 0.5);
+        }
+
+        .btn-primary.disabled,
+        .btn-primary:disabled {
+            color: #fff;
+            background-color: #2878EB;
+            border-color: #2878EB;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled):active,
+        .btn-primary:not(:disabled):not(.disabled).active,
+        .show>.btn-primary.dropdown-toggle {
+            color: #fff;
+            background-color: #135fcd;
+            border-color: #125ac1;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled):active:focus,
+        .btn-primary:not(:disabled):not(.disabled).active:focus,
+        .show>.btn-primary.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.2rem rgba(72, 140, 238, 0.5);
+        }
+
+        .btn-secondary {
+            color: #fff;
+            background-color: #F14D5D;
+            border-color: #F14D5D;
+        }
+
+        .btn-secondary:hover {
+            color: #fff;
+            background-color: #ee2a3d;
+            border-color: #ed1e32;
+        }
+
+        .btn-secondary:focus,
+        .btn-secondary.focus {
+            color: #fff;
+            background-color: #ee2a3d;
+            border-color: #ed1e32;
+            box-shadow: 0 0 0 0.2rem rgba(243, 104, 117, 0.5);
+        }
+
+        .btn-secondary.disabled,
+        .btn-secondary:disabled {
+            color: #fff;
+            background-color: #F14D5D;
+            border-color: #F14D5D;
+        }
+
+        .btn-secondary:not(:disabled):not(.disabled):active,
+        .btn-secondary:not(:disabled):not(.disabled).active,
+        .show>.btn-secondary.dropdown-toggle {
+            color: #fff;
+            background-color: #ed1e32;
+            border-color: #ec1328;
+        }
+
+        .container {
+            max-width: 2000px;
+            color: black;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: #007bff;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            display: none;
+            font-size: 20px;
+        }
+
+        .options {
+            margin-top: 10px;
+        }
+
+        .option {
+            margin-bottom: 15px;
+        }
+
+        .option label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .feedback {
+            margin-top: 20px;
+        }
+
+        .nav-buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0 10px;
+        }
+
+        .nav-button:hover {
+            background-color: #0056b3;
+        }
+
+        .icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .correct {
+            color: #008000;
+        }
+
+        .incorrect {
+            color: #ff0000;
+        }
+
+        #check-button {
+            background-color: #28a745;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        #check-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Comprensió lectora</h1>
+
+        <div class="question" id="story1">
+            <p><strong>Preguntes conte 2:</strong></p>
+            <div class="option">
+                <p>1. Què va fer que la Margarida es sentira deprimida?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> <span style="color: #555;">a) No poder anar en
+                            bicicleta</span></label>
+                    <label><input type="radio" name="q1" value="b"> <span style="color: #555;">b) No poder fer
+                            acrobàcies</span></label>
+                    <label><input type="radio" name="q1" value="c"> <span style="color: #555;">c) Sentir-se vulgar
+                            comparada amb les altres vaques</span></label>
+                    <label><input type="radio" name="q1" value="d"> <span style="color: #555;">d) Totes les
+                            anteriors</span></label>
+                </div>
+            </div>
+            <div class="option">
+                <p>2. Quin pla van idear les gallines per ajudar la Margarida?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> <span style="color: #555;">a) Posar un
+                            ou</span></label>
+                    <label><input type="radio" name="q2" value="b"> <span style="color: #555;">b) Fer-la sentir més
+                            especial</span></label>
+                    <label><input type="radio" name="q2" value="c"> <span style="color: #555;">c) Convençre-la que podia
+                            volar</span></label>
+                    <label><input type="radio" name="q2" value="d"> <span style="color: #555;">d) Totes les
+                            anteriors</span></label>
+                </div>
+            </div>
+            <div class="option">
+                <p>3. Com van reaccionar les altres vaques quan van saber que la Margarida havia posat un ou?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> <span style="color: #555;">a) No se'n van creure
+                            res</span></label>
+                    <label><input type="radio" name="q3" value="b"> <span style="color: #555;">b) Van felicitar la
+                            Margarida</span></label>
+                    <label><input type="radio" name="q3" value="c"> <span style="color: #555;">c) Van pensar que les
+                            gallines havien posat l'ou</span></label>
+                    <label><input type="radio" name="q3" value="d"> <span style="color: #555;">d) Van pensar que era un
+                            truc</span></label>
+                </div>
+            </div>
+            <div class="option">
+                <p>4. Què va sortir de l'ou que va posar la Margarida?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="a"> <span style="color: #555; font-size: 16px;">a) Un
+                            pollastre</span></label>
+                    <label><input type="radio" name="q4" value="b"> <span style="color: #555;">b) Una
+                            gallina</span></label>
+                    <label><input type="radio" name="q4" value="c"> <span style="color: #555;">c) Una
+                            tortuga</span></label>
+                    <label><input type="radio" name="q4" value="d"> <span style="color: #555;">d) Una
+                            ovella</span></label>
+                </div>
+            </div>
+            <div class="option">
+                <p>5. Quin nom va posar la Margarida al seu bebè?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="a"> <span style="color: #555;">a) Marga</span></label>
+                    <label><input type="radio" name="q5" value="b"> <span style="color: #555;">b)
+                            Margarida</span></label>
+                    <label><input type="radio" name="q5" value="c"> <span style="color: #555;">c) Mariona</span></label>
+                    <label><input type="radio" name="q5" value="d"> <span style="color: #555;">d) Margot</span></label>
+                </div>
+            </div>
+            <!-- Añade más preguntas aquí -->
+        </div>
+
+        <button class="nav-button" id="prev-button" style="display: none;" onclick="navigate(-1)">&#8249;
+            Anterior</button>
+        <button class="nav-button" id="next-button" onclick="navigate(1)">Siguiente &#8250;</button>
+        <button id="check-button" style="display: none; color: white;">Comprovar respostes</button>
+        <div id="feedback-message" class="feedback hidden"></div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="lectura1.html" class="btn btn-primary btn-lg"
+                style=" background-color: #ee2f62; border: #ee2f62; text-decoration: none;">Activitat anterior</a>
+            <a href="lectura3.html" class="btn btn-primary btn-lg"
+                style=" background-color: #2fee92; border: #2fee92; text-decoration: none;">Següent activitat</a>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestionIndex = 0;
+        const stories = [
+            {
+                questions: [
+                    {
+                        question: "Què va fer que la Margarida es sentira deprimida?",
+                        options: ["a) No poder anar en bicicleta", "b) No poder fer acrobàcies", "c) Sentir-se vulgar comparada amb les altres vaques", "d) Totes les anteriors"],
+                        correctAnswer: "d"
+                    },
+                    {
+                        question: "Quin pla van idear les gallines per ajudar la Margarida?",
+                        options: ["a) Posar un ou", "b) Fer-la sentir més especial", "c) Convençre-la que podia volar", "d) Totes les anteriors"],
+                        correctAnswer: "d"
+                    },
+                    {
+                        question: "Com van reaccionar les altres vaques quan van saber que la Margarida havia posat un ou?",
+                        options: ["a) No se'n van creure res", "b) Van felicitar la Margarida", "c) Van pensar que les gallines havien posat l'ou", "d) Van pensar que era un truc"],
+                        correctAnswer: "d"
+                    },
+                    {
+                        question: "Què va sortir de l'ou que va posar la Margarida?",
+                        options: ["a) Un pollastre", "b) Una gallina", "c) Una tortuga", "d) Una ovella"],
+                        correctAnswer: "a"
+                    },
+                    {
+                        question: "Quin nom va posar la Margarida al seu bebè?",
+                        options: ["a) Marga", "b) Margarida", "c) Mariona", "d) Margot"],
+                        correctAnswer: "b"
+                    }
+                ]
+            },
+            // Añade más historias aquí
+        ];
+
+        const container = document.querySelector(".container");
+        const prevButton = document.getElementById("prev-button");
+        const nextButton = document.getElementById("next-button");
+        const checkButton = document.getElementById("check-button");
+        const feedbackMessage = document.getElementById("feedback-message");
+
+        renderQuestion();
+
+        function renderQuestion() {
+            const currentStory = stories[currentQuestionIndex];
+            const currentQuestion = currentStory.questions[0];
+            const questionElement = document.getElementById(`story${currentQuestionIndex + 1}`);
+
+            questionElement.style.display = "block";
+            questionElement.innerHTML = `<p><strong>Preguntes conte  'El peix irisat'</strong></p>`;
+
+            currentStory.questions.forEach((question, index) => {
+                questionElement.innerHTML += `
+                    <div class="option">
+                        <p style ="font-size: ;">${index + 1}. ${question.question}</p>
+                        <div class="options">${question.options.map(option => `<label><input type="radio" name="q${index + 1}" value="${option[0]}"> ${option}</label>`).join("")}</div>
+                    </div>
+                `;
+            });
+
+            prevButton.style.display = currentQuestionIndex === 0 ? "none" : "inline-block";
+            nextButton.style.display = currentQuestionIndex === stories.length - 1 ? "none" : "inline-block";
+            checkButton.style.display = currentQuestionIndex === stories.length - 1 ? "inline-block" : "none";
+        }
+
+        function navigate(direction) {
+            currentQuestionIndex += direction;
+            renderQuestion();
+        }
+
+        checkButton.addEventListener("click", () => {
+            let allCorrect = true;
+            feedbackMessage.innerHTML = "";
+
+            stories[currentQuestionIndex].questions.forEach((question, qIndex) => {
+                const radioButtons = container.querySelectorAll(`input[name="q${qIndex + 1}"]:checked`);
+                if (radioButtons.length === 0) {
+                    allCorrect = false;
+                    feedbackMessage.innerHTML += `<p>${qIndex + 1}. No has seleccionat cap resposta.</p>`;
+                    return;
+                }
+                const selectedOption = radioButtons[0].value;
+                const isCorrect = selectedOption === question.correctAnswer[0];
+                const iconClass = isCorrect ? "correct" : "incorrect";
+                const feedbackIcon = isCorrect ? '<i class="icon fas fa-check-circle"></i>' : '<i class="icon fas fa-times-circle"></i>';
+                feedbackMessage.innerHTML += `<p class="${iconClass}">${qIndex + 1}. ${question.options[selectedOption.charCodeAt(0) - 97].slice(3)} ${feedbackIcon}</p>`;
+                if (!isCorrect) allCorrect = false;
+            });
+
+            if (allCorrect) {
+                feedbackMessage.innerHTML += '<p class="correct">¡Totes les respostes son correctes!</p>';
+            } else {
+                feedbackMessage.innerHTML += '<p class="incorrect">Algunes respostes son incorrectes. Per favor, revisa les teues respostes i torna a intentar-ho.</p>';
+            }
+
+            feedbackMessage.classList.remove("hidden");
+        });
+    </script>
+</body>
+
+</html>

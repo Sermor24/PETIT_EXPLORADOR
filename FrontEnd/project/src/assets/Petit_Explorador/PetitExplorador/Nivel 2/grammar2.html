@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Gramática - Nivel 2</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120vh;
+            background-color: #f9c5eb;
+            color: rgb(4, 4, 62);
+            /* Color de fondo diferente */
+        }
+
+        .container {
+            background-color: #ffffff;
+            /* Color de fondo para el contenido */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+            /* Sombra suave */
+            text-align: center; /* Centrar contenido */
+        }
+
+        /* Estilos adicionales para hacer el diseño más grande y colorido */
+        .jumbotron {
+            background-color: #ffcc00;
+            padding: 100px 20px;
+        }
+
+        .jumbotron h1 {
+            font-size: 48px; /* Tamaño de fuente aumentado */
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px; /* Espacio inferior aumentado */
+        }
+
+        .word-container {
+            background-color: #fff;
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .word {
+            display: inline-block;
+            padding: 20px 40px;
+            margin: 10px;
+            background-color: #66ccff;
+            color: #333;
+            border-radius: 30px;
+            cursor: pointer;
+            user-select: none;
+            font-size: 32px; /* Tamaño de fuente aumentado */
+            font-weight: bold;
+        }
+
+        .sentence-container {
+            min-height: 150px;
+            background-color: #f9f9f9;
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            position: relative;
+            text-align: center; /* Centrar contenido */
+        }
+
+        #check-button,
+        #restart-button {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #check-button:hover,
+        #restart-button:hover {
+            background-color: #ff9933;
+        }
+
+        /* Estilos para el mensaje lateral */
+        #feedback-message {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background-color: #00cc66;
+            color: #fff;
+            padding: 20px;
+            border-radius: 5px 0 0 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease;
+            z-index: 999;
+        }
+
+        #feedback-message.hidden {
+            transform: translateY(-50%) translateX(100%);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Game Content Start -->
+    <div class="container">
+        <h1 style="text-align: center; margin-top: 20px; font-size: 36px;">Gramàtica Nivell 2</h1>
+
+        <div class="container-fluid py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2>Activitat 2</h2>
+                    <br>
+                    <div class="activity-container">
+                        <!-- Frase 6 -->
+                        <div class="mb-4">
+                            <p style="font-size: 20px;" class="sentence">1. Abans jo <span class="blank">______</span> jugant.</p>
+                            <div class="options">
+                                <button class="option yes" onclick="selectOption(1, 'estava')">estava</button>
+                                <button class="option" onclick="selectOption(1, 'estic')">estic</button>
+                                <button class="option" onclick="selectOption(1, 'estaré')">estaré</button>
+                            </div>
+                        </div>
+                        <!-- Frase 7 -->
+                        <div class="mb-4">
+                            <p style="font-size: 20px;" class="sentence">2. Demà <span class="blank">______</span> molt de feina.</p>
+                            <div class="options">
+                                <button class="option" onclick="selectOption(2, 'tinc')">tinc</button>
+                                <button class="option yes" onclick="selectOption(2, 'tindré')">tindré</button>
+                                <button class="option" onclick="selectOption(2, 'vaig tindre')">vaig tindre</button>
+                            </div>
+                        </div>
+                        <!-- Frase 8 -->
+                        <div class="mb-4">
+                            <p style="font-size: 20px;" class="sentence">3. Despres <span class="blank">______</span> dormint.</p>
+                            <div class="options">
+                                <button class="option yes" onclick="selectOption(3, 'estaré')">estaré</button>
+                                <button class="option" onclick="selectOption(3, 'estava')">estava</button>
+                                <button class="option" onclick="selectOption(3, 'estic')">estic</button>
+                            </div>
+                        </div>
+                        <!-- Frase 9 -->
+                        <div class="mb-4">
+                            <p style="font-size: 20px;" class="sentence">4. El dissabte passat <span class="blank">______</span> al parc.</p>
+                            <div class="options">
+                                <button class="option yes" onclick="selectOption(4, 'vaig anar')">vaig anar</button>
+                                <button class="option" onclick="selectOption(4, 'anava')">anava</button>
+                                <button class="option" onclick="selectOption(4, 'aniré')">aniré</button>
+                            </div>
+                        </div>
+                        <!-- Frase 10 -->
+                        <div class="mb-4">
+                            <p style="font-size: 20px;" class="sentence">5. Avui <span class="blank">______</span> molt calor.</p>
+                            <div class="options">
+                                <button class="option" onclick="selectOption(5, 'faría')">faría</button>
+                                <button class="option yes" onclick="selectOption(5, 'fa')">fa</button>
+                                <button class="option" onclick="selectOption(5, 'ferá')">ferá</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="grammar.html" class="btn btn-primary btn-lg" style=" background-color: #ee2f62; border: #ee2f62;">Activitat anterior</a>
+            <a href="genero.html" class="btn btn-primary btn-lg" style=" background-color: #2fee92; border: #2fee92;">Següent activitat</a>
+        </div>
+    </div>
+    </div>
+    <!-- Game Content End -->
+
+    <!-- Feedback Message -->
+    <div id="feedback-message" class="hidden"></div>
+
+    <!-- JavaScript Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../js/script3.js"></script>
+</body>
+
+</html>

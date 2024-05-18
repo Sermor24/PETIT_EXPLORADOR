@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de palabras</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-image {
+            max-width: 120%; /* Hacer la imagen más grande */
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .letters-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .letter-input {
+            font-size: 28px; /* Aumentar el tamaño de las letras */
+            font-weight: bold;
+            width: 50px;
+            text-align: center;
+            border: none;
+            border-bottom: 2px solid #333;
+            margin: 0 5px 10px 5px;
+            background-color: #f0f0f0;
+            outline: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .letter-input:focus {
+            background-color: #e0e0e0;
+        }
+
+        .check-button {
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 5px;
+        }
+
+        .check-button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #000;
+        }
+
+        .smiley {
+            font-size: 36px;
+            margin-left: 10px;
+        }
+
+        .smiley-good {
+            color: #4CAF50;
+        }
+
+        .smiley-bad {
+            color: #FF5722;
+        }
+
+        /* Estilos para los modales */
+        .modal {
+            display: none;
+            /* Ocultar por defecto */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+            /* Ancho del modal ajustado */
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Estilos para el botón verde */
+        .next-page-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 24px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .next-page-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Endevina la paraula</h1>
+        <div class="image-container">
+            <img src="../img/CEREZAS.jpg" alt="Pista de la palabra" class="game-image">
+        </div>
+        <div class="letters-container">
+            <input type="text" class="letter-input" value="C" data-index="1">
+            <input type="text" class="letter-input" data-index="2">
+            <input type="text" class="letter-input" value="R" data-index="3">
+            <input type="text" class="letter-input" data-index="4">
+            <input type="text" class="letter-input" data-index="5">
+            <input type="text" class="letter-input" data-index="6">
+            <input type="text" class="letter-input" value="S" data-index="7">
+        </div>
+        <button class="check-button" onclick="checkWord()">Comprovar</button>
+        <div id="modal-felicitaciones" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>¡Felicitats! ¡Has acertat la paraula! <span class="smiley smiley-good">&#128512;</span></p>
+                <button class="next-page-button" onclick="window.location.href='estrella.html';">Següent pàgina</button>
+            </div>
+        </div>
+        <!-- Modal de error -->
+        <div id="modal-error" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>La paraula no és correcta. Torna a intentar. <span class="smiley smiley-bad">&#128542;</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkWord() {
+            const inputs = document.querySelectorAll('.letter-input');
+            const userWord = Array.from(inputs).map(input => input.value.toLowerCase()).join('');
+            const correctWord = 'cireres';
+            const resultDiv = document.getElementById('result');
+
+            if (userWord === correctWord) {
+                // Mostrar modal de felicitaciones
+                document.getElementById('modal-felicitaciones').style.display = 'block';
+            } else {
+                // Mostrar modal de error
+                document.getElementById('modal-error').style.display = 'block';
+
+                // Cerrar el modal de error después de 3 segundos
+                setTimeout(function () {
+                    document.getElementById('modal-error').style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // Cerrar modales al hacer clic en el botón de cerrar
+        document.querySelectorAll('.close').forEach(function (element) {
+            element.addEventListener('click', function () {
+                document.getElementById('modal-felicitaciones').style.display = 'none';
+                document.getElementById('modal-error').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

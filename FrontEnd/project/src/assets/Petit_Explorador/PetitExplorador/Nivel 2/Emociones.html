@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Vocabulario</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-HVfQs/AT2m0krXvJL4Z2nH6z4p6bXxvn6vIlzMsR6eavIpeKc3RSfj+DIpx4fJ5B" crossorigin="anonymous">
+        <style>
+            body {
+               font-family: 'Arial Rounded MT Bold', sans-serif;
+               background-color: #f9c5eb;
+               margin: 0;
+               padding: 0;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               height: 100vh;
+               flex-direction: column;
+           }
+   
+           .container {
+               background-color: #ffffff;
+               padding: 40px;
+               border-radius: 20px;
+               box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+               text-align: center;
+               flex-direction: column;
+               z-index: 1; /* Asegura que el contenido esté por encima del fondo */
+           }
+   
+           h1 {
+               top: 0;
+           }
+   
+           h2 {
+               margin-top: 0;
+               margin-bottom: 10px;
+           }
+   
+           h1,
+           h2 {
+               color: #268bd2;
+               margin-bottom: 20px;
+               font-size: 36px; /* Aumenta el tamaño del título */
+           }
+   
+           #game-container {
+               display: flex;
+               flex-wrap: wrap;
+               justify-content: center;
+               gap: 30px; /* Aumenta el espacio entre las tarjetas */
+               margin-bottom: 30px; /* Aumenta el espacio entre el juego y el selector de idioma */
+           }
+   
+           .card {
+               width: 180px; /* Aumenta el tamaño de las tarjetas */
+               height: 180px; /* Aumenta el tamaño de las tarjetas */
+               background-color: #ffc20b;
+               color: #ffffff;
+               display: flex;
+               flex-direction: column;
+               justify-content: center;
+               align-items: center;
+               font-size: 28px; /* Aumenta el tamaño del texto */
+               border-radius: 25px; /* Aumenta el radio de borde de las tarjetas */
+               cursor: pointer;
+               transition: background-color 0.3s ease;
+               position: relative;
+           }
+   
+           .card:hover {
+               background-color: #cb4b16;
+           }
+   
+           .card-icon {
+               font-size: 36px; /* Aumenta el tamaño del icono */
+               margin-bottom: 15px; /* Ajusta el espacio entre el icono y el texto */
+           }
+   
+           #change-language-select {
+               background-color: #ff6f61;
+               color: #ffffff;
+               border: none;
+               border-radius: 20px;
+               padding: 15px 25px;
+               font-size: 24px;
+               cursor: pointer;
+               transition: background-color 0.3s ease, transform 0.3s ease;
+               text-transform: uppercase;
+               letter-spacing: 1px;
+               position: relative;
+               animation: bounce 1s infinite alternate;
+               margin-top: 30px; /* Mueve el select hacia abajo */
+           }
+   
+           #change-language-select:hover {
+               background-color: #ff403d;
+           }
+   
+           @keyframes bounce {
+               0% {
+                   transform: translateY(0);
+               }
+   
+               100% {
+                   transform: translateY(-5px);
+               }
+           }
+   
+           /* Modal */
+           .modal {
+               display: none;
+               position: fixed;
+               z-index: 1;
+               left: 0;
+               top: 0;
+               width: 100%;
+               height: 100%;
+               overflow: auto;
+               background-color: rgba(0, 0, 0, 0.5);
+           }
+   
+           .modal-content {
+               background-color: #ffffff;
+               margin: 15% auto;
+               padding: 20px;
+               border-radius: 10px;
+               box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+               text-align: center;
+           }
+   
+           .close {
+               color: #aaaaaa;
+               float: right;
+               font-size: 28px;
+               font-weight: bold;
+               cursor: pointer;
+           }
+   
+           .close:hover,
+           .close:focus {
+               color: #000000;
+               text-decoration: none;
+               cursor: pointer;
+           }
+   
+           /* Input button styles */
+           .input-btn {
+               background-color: #268bd2;
+               color: #ffffff;
+               border: none;
+               border-radius: 10px;
+               padding: 12px 24px;
+               font-size: 20px;
+               cursor: pointer;
+               transition: background-color 0.3s ease;
+               margin: 10px;
+           }
+   
+           .input-btn:hover {
+               background-color: #002b36;
+           }
+   
+           /* Emoji styles */
+           .emoji {
+               font-size: 48px;
+               margin-bottom: 20px;
+           }
+   
+           /* Estilos para los botones */
+           #button-container {
+               margin-top: 30px;
+               display: flex;
+               justify-content: space-between;
+               /* Espacio entre los botones */
+               width: 100%;
+               /* Para ocupar todo el ancho */
+               max-width: 400px;
+               /* Limitar el ancho máximo para que no se estiren demasiado */
+               z-index: 1; /* Asegura que los botones estén por encima del fondo */
+           }
+   
+           button {
+               flex: 1;
+               /* Los botones se expanden para ocupar el espacio disponible */
+               background-color: #268bd2;
+               color: #ffffff;
+               border: none;
+               border-radius: 10px;
+               padding: 16px 32px;
+               font-size: 20px;
+               cursor: pointer;
+               transition: background-color 0.3s ease;
+               margin: 0 10px;
+           }
+   
+           button a {
+               text-decoration: none;
+               color: #fdf6e3;
+           }
+   
+           button:hover {
+               background-color: #002b36;
+           }
+       </style>
+</head>
+
+<body>
+
+    <h1>Jocs de Vocabulari</h1>
+    <div class="container">
+        <h2 style="font-size: 25px">EMOCIONS</h2>
+        <div id="game-container"></div>
+        <select id="change-language-select">
+            <option value="ingles">Anglés</option>
+            <option value="ruso">Rus</option>
+            <option value="arabe">Àrab</option>
+            <option value="ucraniano">Ucraïnés</option>
+        </select>
+    </div>
+
+    <!-- Contenedor para los botones -->
+    <div id="button-container">
+        <button id="previous-button"><a href="Animales.html">Anterior</a></button>
+        <button id="next-button"><a href="Comida.html">Siguiente</a></button>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="emoji" id="emoji"></div>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
+    <script>
+        const palabras = [
+            { ingles: "Joy", arabe: "البهجة", ruso: "Радость", ucraniano: "радість", valenciano: ["Alegría", "Amor", "Tristesa"] },
+            { ingles: "Sadness", arabe: "الحزن", ruso: "Печаль", ucraniano: "смуток", valenciano: ["Tristesa", "Amorament", "Ràbia "] },
+            { ingles: "Disgust", arabe: "الاشمئزاز", ruso: "Отвращение", ucraniano: "Відраза", valenciano: ["Fàstic", "Calma", "Dolor"] },
+            { ingles: "Anger", arabe: "الغضب", ruso: "Гнев", ucraniano: "Гнів", valenciano: ["Ràbia", "Ira", "Confusió"] },
+            { ingles: "Love", arabe: "الحب", ruso: "Любовь", ucraniano: "любов ", valenciano: ["Amor", "Culpa", "Por"] },
+            // Agrega más palabras aquí...
+        ];
+
+        const gameContainer = document.getElementById("game-container");
+        const changeLanguageSelect = document.getElementById("change-language-select");
+        const modal = document.getElementById("modal");
+        const modalMessage = document.getElementById("modal-message");
+
+        function mostrarPalabras(idioma) {
+            gameContainer.innerHTML = "";
+            palabras.forEach((palabra) => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.innerHTML = `<i class="card-icon fas fa-puzzle-piece"></i>${palabra[idioma]}`;
+                card.addEventListener("click", () => {
+                    const opciones = palabra.valenciano.slice(); // Copia el array para no alterarlo
+                    opciones.sort(() => Math.random() - 0.5); // Mezcla aleatoriamente el orden de las palabras
+                    const respuestaCorrecta = palabra.valenciano[0];
+                    mostrarMensaje(opciones, respuestaCorrecta);
+                });
+                gameContainer.appendChild(card);
+            });
+        }
+
+        function mostrarMensaje(opciones, respuestaCorrecta, palabra) {
+            // Limpiar completamente el contenido del modal
+            modalMessage.innerHTML = "";
+
+            // Crear el contenido del modal
+            const modalContent = document.createElement("div");
+            modalContent.innerHTML = `<h2>¡Selecciona la traducció correcta!</h2>`;
+            opciones.forEach((opcion) => {
+                const btn = document.createElement("button");
+                btn.textContent = opcion;
+                btn.classList.add("input-btn");
+                btn.addEventListener("click", () => {
+                    // Mostrar mensaje de acuerdo a la respuesta
+                    if (opcion === respuestaCorrecta) {
+                        mostrarModal("¡Correcte!", "😄"); // Mostrar emoji sonriente si es correcto
+                    } else {
+                        mostrarModal("¡Incorrecte! Torna a intentar.", "😢"); // Mostrar emoji triste si es incorrecto
+                    }
+                });
+                modalContent.appendChild(btn);
+            });
+
+            modalMessage.appendChild(modalContent);
+            modal.style.display = "block";
+        }
+
+        function mostrarModal(mensaje, emoji) {
+            modalMessage.textContent = mensaje;
+            document.getElementById("emoji").innerHTML = emoji; // Establecer el emoji aquí
+            modal.style.display = "block";
+            setTimeout(() => {
+                modal.style.display = "none";
+                document.getElementById("emoji").innerHTML = ""; // Limpiar el emoji al cerrar el modal
+            }, 2000);
+        }
+
+        // Cerrar modal al hacer clic en 'X'
+        modal.querySelector(".close").addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        changeLanguageSelect.addEventListener("change", (event) => {
+            const idiomaSeleccionado = event.target.value;
+            mostrarPalabras(idiomaSeleccionado);
+        });
+
+        // Mostrar palabras en el idioma inicial al cargar la página
+        mostrarPalabras("ingles");
+    </script>
+</body>
+
+</html>

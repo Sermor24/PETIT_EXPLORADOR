@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fonolo</title>
+    <style>
+        
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #9ff5fe;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px; /* Ajusta el ancho máximo del contenedor */
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 40px; /* Ajusta el tamaño del título */
+    margin-bottom: 20px;
+    color: #4CAF50;
+}
+
+p {
+    font-size: 20px; /* Ajusta el tamaño del párrafo */
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.image-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Muestra 4 columnas */
+    justify-content: center;
+    gap: 20px; /* Espacio entre las imágenes */
+    margin-bottom: 20px;
+}
+
+.image-container > div {
+    text-align: center;
+}
+
+.image-container img {
+    width: 200px; /* Ancho de la imagen */
+    height: 200px; /* Altura de la imagen */
+    border-radius: 10px;
+    border: 2px solid #4CAF50;
+    background-color: #fff;
+    margin-bottom: 5px;
+    transition: transform 0.3s;
+}
+
+.image-container img:hover {
+    transform: scale(1.1);
+}
+
+.user-input {
+    padding: 15px; /* Ajusta el relleno del cuadro de entrada */
+    border-radius: 5px;
+    border: 2px solid #4CAF50;
+    width: 150px;
+    font-size: 18px; /* Ajusta el tamaño del texto de entrada */
+    color: #555;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+p#result {
+    margin-top: 10px;
+    font-size: 20px;
+    transition: color 0.5s, transform 0.5s;
+}
+
+.correct {
+    color: #4CAF50;
+    transform: scale(1.1);
+}
+
+.incorrect {
+    color: #FF5733;
+    transform: rotate(-5deg);
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #6B6A75;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: false;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #2878EB;
+    border-color: #2878EB;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #1465d9;
+    border-color: #135fcd;
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+    color: #fff;
+    background-color: #1465d9;
+    border-color: #135fcd;
+    box-shadow: 0 0 0 0.2rem rgba(72, 140, 238, 0.5);
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    color: #fff;
+    background-color: #2878EB;
+    border-color: #2878EB;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #135fcd;
+    border-color: #125ac1;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(72, 140, 238, 0.5);
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #F14D5D;
+    border-color: #F14D5D;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #ee2a3d;
+    border-color: #ed1e32;
+}
+
+.btn-secondary:focus,
+.btn-secondary.focus {
+    color: #fff;
+    background-color: #ee2a3d;
+    border-color: #ed1e32;
+    box-shadow: 0 0 0 0.2rem rgba(243, 104, 117, 0.5);
+}
+
+.btn-secondary.disabled,
+.btn-secondary:disabled {
+    color: #fff;
+    background-color: #F14D5D;
+    border-color: #F14D5D;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.show>.btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #ed1e32;
+    border-color: #ec1328;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Endevina en Valencià</h1>
+        <p>Intenta endevinar la paraula en valencià corresponent a cada imatge. Escriu la teua resposta en el camp de text i després pressiona el botó "Comprovar".</p>
+        <div class="image-container">
+            <div>
+                <div>
+                    <img src="../img/gato.jpg" alt="Gato">
+                </div>
+                <div>
+                    <input type="text" class="user-input" placeholder="Escribe aquí">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="../img/arbol.jpg" alt="Árbol">
+                </div>
+                <div>
+                    <input type="text" class="user-input" placeholder="Escribe aquí">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="../img/perro.jpg" alt="Perro">
+                </div>
+                <div>
+                    <input type="text" class="user-input" placeholder="Escribe aquí">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="../img/flor.jpg" alt="Flor">
+                </div>
+                <div>
+                    <input type="text" class="user-input" placeholder="Escribe aquí">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="../img/sol.jpg" alt="Sol">
+                </div>
+                <div>
+                    <input type="text" class="user-input" placeholder="Escribe aquí">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="../img/mariposa.jpg" alt="Mariposa">
+                </div>
+                <div>
+                    <input type="text" class="user-input" placeholder="Escribe aquí">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="../img/nube.png" alt="Nube">
+                </div>
+                <div>
+                    <input type="text" class="user-input" placeholder="Escribe aquí">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="../img/luna.jpg" alt="Luna">
+                </div>
+                <div>
+                    <input type="text" class="user-input" placeholder="Escribe aquí">
+                </div>
+            </div>
+        </div>
+        
+        
+        <button onclick="checkAnswer()">Comprovar</button>
+
+        
+        <p id="result"></p>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="Ordenar4.html" class="btn btn-primary btn-lg"
+                style=" background-color: #ee2f62; border: #ee2f62; text-decoration: none;">Activitat anterior</a>
+            <a href="zanahoria.html" class="btn btn-primary btn-lg"
+                style=" background-color: #2fee92; border: #2fee92; text-decoration: none;">Següent activitat</a>
+        </div>
+    </div>
+
+    <script>
+        const words = [
+            { valencian: "gat", image: "gato.jpg" },
+            { valencian: "arbre", image: "arbol.jpg" },
+            { valencian: "gos", image: "perro.jpg" },
+            { valencian: "flor", image: "flor.jpg" },
+            { valencian: "sol", image: "sol.jpg" },
+            { valencian: "papallona", image: "mariposa.jpg" },
+            { valencian: "nùvol", image: "nube.jpg" },
+            { valencian: "lluna", image: "luna.jpg" },
+            // Agrega más palabras y sus imágenes aquí
+        ];
+
+        let currentWordIndex = 0;
+        const userInputElements = document.querySelectorAll('.user-input');
+        const result = document.getElementById('result');
+
+        function initGame() {
+            result.innerText = '';
+        }
+
+        function checkAnswer() {
+            const incorrectAnswers = [];
+            userInputElements.forEach((input, index) => {
+                const userAnswer = input.value.trim().toLowerCase();
+                const correctAnswer = words[index].valencian.toLowerCase();
+                if (userAnswer !== correctAnswer) {
+                    incorrectAnswers.push(index + 1); // Almacenar el número de respuesta incorrecta
+                }
+            });
+
+            if (incorrectAnswers.length === 0) {
+                result.innerText = '¡Totes les respostes son correctes! ¡Molt Bé!';
+                result.classList.add('correct');
+            } else {
+                result.innerText = 'Resposta incorrecta: ' + incorrectAnswers.join(', ');
+                result.classList.add('incorrect');
+                setTimeout(() => {
+                    result.classList.remove('incorrect');
+                }, 500);
+            }
+        }
+
+        initGame(); // Iniciar el juego al cargar la página
+    </script>
+</body>
+</html>

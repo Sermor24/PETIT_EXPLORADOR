@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordena las palabras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .word-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .letter-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .letter {
+            background-color: #cce6ff;
+            color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+
+        .letter:hover {
+            background-color: #b3e0ff;
+        }
+
+        .dropzone {
+            border: 2px dashed #aaa;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropzone.active {
+            border-color: #007bff;
+        }
+
+        .dropzone.correct {
+            border-color: #008000;
+        }
+
+        .dropzone.incorrect {
+            border-color: #ff0000;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .feedback {
+            margin-top: 20px;
+        }
+
+        .check-icon {
+            color: #008000;
+        }
+
+        .cross-icon {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ordena las palabras</h1>
+        <div class="word-container">
+            <div class="letter-container">
+                <div class="letter" draggable="true" data-letter="a">a</div>
+                <div class="letter" draggable="true" data-letter="r">r</div>
+                <div class="letter" draggable="true" data-letter="e">e</div>
+                <div class="letter" draggable="true" data-letter="r">r</div>
+                <div class="letter" draggable="true" data-letter="g">g</div>
+            </div>
+        </div>
+        <div class="word-container">
+            <div class="letter-container">
+                <div class="letter" draggable="true" data-letter="s">s</div>
+                <div class="letter" draggable="true" data-letter="e">e</div>
+                <div class="letter" draggable="true" data-letter="a">a</div>
+                <div class="letter" draggable="true" data-letter="l">l</div>
+                <div class="letter" draggable="true" data-letter="g">g</div>
+                <div class="letter" draggable="true" data-letter="u">u</div>
+            </div>
+        </div>
+        <!-- Agrega más palabras aquí -->
+        <div class="dropzone" id="dropzone" ondrop="drop(event)" ondragover="allowDrop(event)">
+            Arrastra y suelta las letras aquí para formar las palabras correctas.
+        </div>
+        <button id="check-button">Comprobar respuesta</button>
+        <div id="feedback-message" class="feedback hidden"></div>
+    </div>
+
+    <script>
+        const words = ["arreg", "sealgu", "davespra", "taroli", "tanpla", "jaronta", "dornadior"];
+
+        const dropzone = document.getElementById("dropzone");
+        const checkButton = document.getElementById("check-button");
+        const feedbackMessage = document.getElementById("feedback-message");
+
+        let draggedItem = null;
+
+        document.querySelectorAll('.letter').forEach(item => {
+            item.addEventListener('dragstart', event => {
+                draggedItem = event.target;
+                event.dataTransfer.setData('text/plain', draggedItem.dataset.letter);
+            });
+        });
+
+        function allowDrop(event) {
+            event.preventDefault();
+            dropzone.classList.add('active');
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            dropzone.classList.remove('active');
+            const droppedLetter = event.dataTransfer.getData('text/plain');
+            const letterElement = document.createElement('div');
+            letterElement.textContent = droppedLetter;
+            letterElement.classList.add('letter');
+            letterElement.dataset.letter = droppedLetter;
+            letterElement.addEventListener('click', () => {
+                draggedItem = letterElement;
+                const originalContainer = document.querySelector(`#word${droppedLetter}`);
+                originalContainer.appendChild(letterElement);
+            });
+            event.target.appendChild(letterElement);
+            draggedItem.remove();
+        }
+
+        checkButton.addEventListener('click', () => {
+            const currentWord = Array.from(dropzone.children).map(item => item.textContent).join('');
+            const isCorrect = words.includes(currentWord);
+            feedbackMessage.classList.remove('hidden');
+            feedbackMessage.textContent = isCorrect ? '¡Correcto! ¡Has formado la palabra correctamente!' : '¡Incorrecto! Intenta nuevamente.';
+            feedbackMessage.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+        });
+    </script>
+</body>
+</html>
